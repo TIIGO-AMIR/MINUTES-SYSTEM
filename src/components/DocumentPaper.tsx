@@ -1,5 +1,6 @@
 import React from 'react';
 import { MeetingMinutes } from '../types';
+import headerLogo from '../assets/mru-header.png';
 
 interface DocumentPaperProps {
   record: MeetingMinutes;
@@ -64,7 +65,7 @@ export const DocumentPaper: React.FC<DocumentPaperProps> = ({ record }) => {
       <div className="doc-header">
         <img
           className="official-header-image"
-          src="/assets/mru-header.png"
+          src={headerLogo}
           alt="Muteesa I Royal University official header"
         />
         <p>Official Meeting Minutes</p>
