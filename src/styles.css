@@ -12,3 +12,213 @@ form{background:#fff;border:1px solid var(--line);border-radius:16px;padding:24p
 .paper .agenda-only{padding-left:24px;margin:8px 0 18px}
 .paper .agenda-only li{padding:2px 0}
 @media print{.official-header-image{max-height:38mm;object-fit:contain}}
+
+/* Progressive Web App (PWA) Mobile Install Banner & Controls */
+.pwa-mobile-banner {
+  background: linear-gradient(135deg, #123d2b 0%, #1e6547 100%);
+  color: #ffffff;
+  padding: 10px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  box-shadow: 0 4px 16px rgba(18, 61, 43, 0.25);
+  position: relative;
+  z-index: 50;
+  animation: slideDown 0.3s ease-out;
+}
+@keyframes slideDown {
+  from { transform: translateY(-100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.pwa-banner-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+.pwa-banner-icon {
+  font-size: 24px;
+  flex-shrink: 0;
+}
+.pwa-banner-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+}
+.pwa-banner-text strong {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.pwa-banner-text span {
+  font-size: 11px;
+  opacity: 0.88;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.pwa-banner-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.pwa-install-btn {
+  background: #f8d675;
+  color: #123d2b;
+  border: 0;
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+  transition: transform 0.1s, background 0.15s;
+  white-space: nowrap;
+}
+.pwa-install-btn:hover {
+  background: #ffe38f;
+  transform: translateY(-1px);
+}
+.pwa-install-btn:active {
+  transform: translateY(1px);
+}
+.pwa-dismiss-btn {
+  background: transparent;
+  border: 0;
+  color: rgba(255,255,255,0.7);
+  font-size: 16px;
+  cursor: pointer;
+  padding: 6px;
+  line-height: 1;
+  border-radius: 6px;
+}
+.pwa-dismiss-btn:hover {
+  color: #fff;
+  background: rgba(255,255,255,0.15);
+}
+
+/* Topbar install button */
+.topbar-install-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #f4faf6;
+  border: 1px solid #c2dbcd;
+  color: #123d2b;
+  font-weight: 700;
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.topbar-install-btn:hover {
+  background: #e9f4ed;
+  border-color: #1e6547;
+}
+
+/* iOS Safari Installation Modal */
+.pwa-ios-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 16px;
+  backdrop-filter: blur(2px);
+  animation: fadeIn 0.2s ease-out;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.pwa-ios-modal {
+  background: #ffffff;
+  border-radius: 18px;
+  max-width: 400px;
+  width: 100%;
+  padding: 24px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+}
+.pwa-ios-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.pwa-ios-header h3 {
+  margin: 0;
+  font-size: 17px;
+  color: #123d2b;
+}
+.pwa-ios-instruction {
+  font-size: 13px;
+  color: #55665d;
+  margin: 0 0 14px 0;
+  line-height: 1.45;
+}
+.pwa-ios-steps {
+  margin: 0;
+  padding-left: 20px;
+  font-size: 13px;
+  color: #1e2d24;
+  line-height: 1.6;
+}
+.pwa-ios-steps li {
+  margin-bottom: 8px;
+}
+
+/* Offline connectivity badge */
+.offline-badge {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background: #c94a29;
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+  z-index: 90;
+}
+.offline-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ffffff;
+  animation: pulse 1.5s infinite;
+}
+@keyframes pulse {
+  0% { transform: scale(0.9); opacity: 0.6; }
+  50% { transform: scale(1.3); opacity: 1; }
+  100% { transform: scale(0.9); opacity: 0.6; }
+}
+
+@media print {
+  .pwa-mobile-banner,
+  .pwa-ios-overlay,
+  .offline-badge,
+  .topbar-install-btn {
+    display: none !important;
+  }
+}
+
+@media (max-width: 560px) {
+  .pwa-mobile-banner {
+    padding: 8px 12px;
+  }
+  .pwa-banner-text span {
+    display: none;
+  }
+  .pwa-install-btn {
+    padding: 7px 11px;
+    font-size: 12px;
+  }
+}
+

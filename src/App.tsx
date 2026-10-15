@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useCallback, useRef } from 'react';
 import { MeetingMinutes, ActiveView } from './types';
 import { Topbar } from './components/Topbar';
 import { Sidebar } from './components/Sidebar';
@@ -6,6 +6,8 @@ import { DashboardView } from './components/DashboardView';
 import { EditorView } from './components/EditorView';
 import { LibraryView } from './components/LibraryView';
 import { Toast } from './components/Toast';
+import { PWAInstallBanner } from './components/PWAInstallBanner';
+import { OfflineIndicator } from './components/OfflineIndicator';
 
 const STORAGE_KEY = 'mrumsa_minutes_v1';
 
@@ -203,6 +205,7 @@ export const App: React.FC = () => {
 
   return (
     <div>
+      <PWAInstallBanner />
       <Topbar onNewRecord={handleNewRecord} />
       <div className="layout">
         <Sidebar activeView={activeView} onNavigate={handleNavigate} />
@@ -245,6 +248,7 @@ export const App: React.FC = () => {
         </main>
       </div>
       <Toast message={toastMessage} />
+      <OfflineIndicator />
     </div>
   );
 };

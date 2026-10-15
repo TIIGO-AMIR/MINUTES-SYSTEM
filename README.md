@@ -28,6 +28,21 @@ A professional meeting minutes manager and print-ready PDF generator built for t
 - **Vite**
 - **CSS3** with custom design system and print media queries
 
+## Mobile Phone Installation (PWA)
+
+This application is a **Progressive Web App (PWA)** that can be installed directly to home screens on phones without needing an app store:
+
+- **Android (Chrome / Edge / Samsung Internet)**: Clicking the live link displays an instant **"⚡ Install Now"** banner at the top and a **"📱 Install App"** button in the top navigation bar. Clicking it prompts native installation directly to the phone's app launcher.
+- **iPhone / iPad (iOS Safari)**: Tap the Safari **Share** button (`⬆`), then select **"Add to Home Screen" (`➕`)**. A built-in guide modal appears automatically to assist iPhone users.
+- **Offline Capable**: Once installed, minutes can be created, edited, searched, and formatted even with zero internet connectivity.
+
+## GitHub Pages Live Deployment
+
+The repository includes an automated GitHub Actions deployment workflow (`.github/workflows/static.yml`):
+1. Whenever code is pushed to the `main` branch, GitHub Actions builds the React PWA with `npm ci && npm run build`.
+2. The compiled static distribution (`dist/`) is deployed to GitHub Pages automatically.
+3. The Vite base path is set to `./` so all scripts, icons, service workers, and assets load seamlessly on GitHub Pages subpaths (e.g. `https://<username>.github.io/<repo>/`).
+
 ## Development
 
 ```bash
@@ -36,3 +51,4 @@ npm run dev
 ```
 
 Built for port 3000 on `0.0.0.0`.
+
