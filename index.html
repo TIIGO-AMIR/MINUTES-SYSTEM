@@ -1,72 +1,22 @@
 <!doctype html>
 <html lang="en">
-<head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#123d2b">
-<title>MRUMSA Minutes Manager</title>
-<link rel="stylesheet" href="styles.css">
-</head>
-<body>
-<header class="topbar">
-  <div class="brandmark">M</div>
-  <div class="brand"><strong>MRUMSA</strong><span>Meeting Minutes Manager</span></div>
-  <button id="newBtn" class="primary">+ New minutes</button>
-</header>
-<div class="layout">
-  <aside class="sidebar">
-    <button class="nav active" data-view="dashboard">▦ &nbsp; Dashboard</button>
-    <button class="nav" data-view="editor">＋ &nbsp; Create minutes</button>
-    <button class="nav" data-view="library">▤ &nbsp; Saved minutes</button>
-    <div class="side-note"><strong>Local workspace</strong><p>Your minutes are saved in this browser on this device. Export backups regularly.</p></div>
-  </aside>
-  <main>
-    <section id="dashboard" class="view">
-      <div class="eyebrow">MUTEESA I ROYAL UNIVERSITY</div>
-      <h1>Meeting records, made simple.</h1>
-      <p class="muted">Create consistent association minutes, edit previous records and export a print-ready PDF.</p>
-      <div class="stats"><article><span>Saved records</span><b id="statTotal">0</b></article><article><span>Last updated</span><b id="statUpdated">—</b></article></div>
-      <div class="section-head"><div><h2>Recent minutes</h2><p class="muted">Your latest saved records</p></div><button class="secondary" data-goto="library">View all</button></div>
-      <div id="recentList" class="record-list"></div>
-      <div class="empty" id="dashEmpty"><div class="empty-icon">▤</div><h3>No minutes yet</h3><p>Start from the association template. You can save a draft and return later.</p><button class="primary" data-goto="editor">Create your first minutes</button></div>
-    </section>
-    <section id="editor" class="view hidden">
-      <div class="section-head"><div><div class="eyebrow">DOCUMENT BUILDER</div><h1 id="editorTitle">Create meeting minutes</h1><p class="muted">Fill in the meeting details and agenda items. The preview updates as you type.</p></div><button id="backBtn" class="secondary">← Dashboard</button></div>
-      <form id="minutesForm">
-        <input type="hidden" id="recordId">
-        <div class="form-grid">
-          <label>Meeting title *<input id="meetingTitle" required placeholder="e.g. Executive Committee Meeting"></label>
-          <label>Meeting type<select id="meetingType"><option>Executive Committee Meeting</option><option>General Members Meeting</option><option>Annual General Meeting</option><option>Planning Meeting</option><option>Emergency Meeting</option><option>Other</option></select></label>
-          <label>Date *<input id="meetingDate" type="date" required></label>
-          <label>Start time<input id="startTime" type="time"></label>
-          <label>End time<input id="endTime" type="time"></label>
-          <label>Venue / platform<input id="venue" placeholder="e.g. University mosque"></label>
-          <label>Chairperson<input id="chairperson" placeholder="Full name"></label>
-          <label>Minute secretary<input id="secretary" placeholder="Full name"></label>
-          <label class="wide">Members present<textarea id="present" rows="2" placeholder="List names, separated by commas or new lines"></textarea></label>
-          <label class="wide">Apologies / absent members<textarea id="apologies" rows="2" placeholder="Names and apologies received"></textarea></label>
-        </div>
-        <div class="section-head agenda-head"><div><h2>Agenda and proceedings</h2><p class="muted">Use one item per agenda point. Include discussion, resolutions and action owners.</p></div><button type="button" id="addAgenda" class="secondary">+ Add agenda item</button></div>
-        <div id="agendaItems"></div>
-        <div class="form-grid closing-grid">
-          <label class="wide">Any other business<textarea id="aob" rows="3" placeholder="Other matters raised"></textarea></label>
-          <label class="wide">Next meeting<textarea id="nextMeeting" rows="2" placeholder="Proposed date, time and venue, or 'To be communicated'"></textarea></label>
-          <label>Meeting closed at<input id="closedAt" type="time"></label>
-          <label>Approval status<select id="status"><option>Draft</option><option>For review</option><option>Approved</option></select></label>
-          <label>Chairperson signature name<input id="chairSign" placeholder="Name / signature line"></label>
-          <label>Secretary signature name<input id="secretarySign" placeholder="Name / signature line"></label>
-        </div>
-        <div class="form-actions"><button type="button" id="previewBtn" class="secondary">Preview document</button><button type="button" id="saveBtn" class="primary">Save minutes</button><button type="button" id="pdfBtn" class="dark">Download / Print PDF</button></div>
-        <p id="saveMessage" class="message" aria-live="polite"></p>
-      </form>
-      <div id="previewWrap" class="preview-wrap hidden"><div class="section-head"><h2>Document preview</h2><button id="closePreview" class="secondary">Close preview</button></div><div id="documentPreview" class="paper"></div></div>
-    </section>
-    <section id="library" class="view hidden">
-      <div class="eyebrow">RECORDS ARCHIVE</div><h1>Saved minutes</h1><p class="muted">Open a record to edit it, duplicate it or export it as PDF.</p>
-      <div class="library-tools"><input id="searchRecords" placeholder="Search by title, date or venue…"><button id="exportBackup" class="secondary">Export data backup</button><label class="upload-btn secondary">Import backup<input type="file" id="importBackup" accept="application/json"></label></div>
-      <div id="allRecords" class="record-list"></div><div id="libraryEmpty" class="empty hidden"><h3>No matching records</h3><p>Create minutes or try a different search.</p></div>
-    </section>
-  </main>
-</div>
-<div id="toast" class="toast" role="status"></div>
-<script src="app.js"></script>
-</body></html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#123d2b" />
+    <title>MRUMSA Minutes Manager</title>
+    <meta
+      name="description"
+      content="Meeting minutes manager and PDF generator for Muteesa I Royal University Muslim Students Association (MRUMSA)."
+    />
+    <meta property="og:title" content="MRUMSA Minutes Manager" />
+    <meta
+      property="og:description"
+      content="Meeting minutes manager and PDF generator for Muteesa I Royal University Muslim Students Association (MRUMSA)."
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

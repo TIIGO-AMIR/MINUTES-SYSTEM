@@ -1,0 +1,8 @@
+{
+  "name": "MRUMSA Minutes Manager",
+  "description": "Meeting minutes manager and PDF generator for Muteesa I Royal University Muslim Students Association (MRUMSA).",
+  "permissions": [],
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
